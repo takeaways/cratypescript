@@ -1,6 +1,17 @@
-import * as React from "react";
+import * as React from 'react';
+import { FunctionComponent } from 'react';
 
-const DetailPresenter = () => <div>Detail</div>;
+import DetailComponent from '../../Components/Detail';
+import Loader from '../../Components/Loader';
 
+const DetailPresender: FunctionComponent<any> = ({
+	result,
+	error,
+	loading,
+}) => {
+	console.log(result);
 
-export default DetailPresenter;
+	return loading ? <Loader /> : <DetailComponent result={result} />;
+};
+
+export default DetailPresender;

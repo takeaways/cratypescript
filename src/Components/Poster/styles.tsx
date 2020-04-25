@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import { ImageTypes } from './index.d';
 
 export const Container = styled.div`
 	font-size: 12px;
@@ -10,31 +11,28 @@ export const Rating = styled.span`
 	opacity: 0;
 `;
 
-export const Image = styled.div`
+export const Image = styled.div<ImageTypes>`
 	height: 180px;
 	background-size: cover;
 	border-radius: 5px;
 
 	background-position: center center;
 	transition: opacity 0.2s ease-in-out;
-	
+	background-image: url(${(props) =>	`https://image.tmdb.org/t/p/w300/` + props.bgUrl});
 `;
-
-// background-image: url(${(props) =>`https://image.tmdb.org/t/p/w300/` + props.bgUrl});
 
 export const ImageContainer = styled.div`
 	margin-bottom: 5px;
 	position: relative;
+	&:hover {
+		${Image} {
+			opacity: 0.3;
+		}
+		${Rating} {
+			opacity: 1;
+		}
+	}
 `;
-
-// &:hover {
-// 	${Image} {
-// 		opacity: 0.3;
-// 	}
-// 	${Rating} {
-// 		opacity: 1;
-// 	}
-// }
 
 export const Title = styled.span`
 	display: block;
