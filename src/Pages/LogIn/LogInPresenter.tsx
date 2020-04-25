@@ -1,5 +1,15 @@
 import * as React from "react";
+import { FunctionComponent } from "react";
 
-const LogInPresenter = () =><div>LogIn</div>
+import { LogInTypes } from "./index.d"
+import LogIn from "../../Components/LogIn";
+
+const LogInPresenter: FunctionComponent<LogInTypes> = ({
+    userId,
+    userPw,
+    onChangeId,
+    onChangePw,
+    onSubmit
+}) => <LogIn />
 
 export default LogInPresenter;

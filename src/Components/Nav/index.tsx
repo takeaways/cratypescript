@@ -1,10 +1,10 @@
 import * as React from "react";
-import {FunctionComponent} from "react";
-import {withRouter, RouteComponentProps} from "react-router-dom";
+import { FunctionComponent } from "react";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 
 import * as Styles from "./styles";
 
-const Nav: FunctionComponent<RouteComponentProps> = ({location: {pathname}}) => {
+const Nav: FunctionComponent<RouteComponentProps> = ({ location: { pathname } }) => {
     console.log(pathname);
     return (
         <Styles.Header>
@@ -13,8 +13,8 @@ const Nav: FunctionComponent<RouteComponentProps> = ({location: {pathname}}) => 
                     <Styles.ListItem current={pathname === "/"}>
                         <Styles.ListLink to={"/"}>Home</Styles.ListLink>
                     </Styles.ListItem>
-                    <Styles.ListItem current={pathname === "/search"}>
-                        <Styles.ListLink to={"/search"}>Search</Styles.ListLink>
+                    <Styles.ListItem current={pathname === "/translate"}>
+                        <Styles.ListLink to={"/translate"}>Translate</Styles.ListLink>
                     </Styles.ListItem>
                 </Styles.List>
             </Styles.HeaderBlock>
