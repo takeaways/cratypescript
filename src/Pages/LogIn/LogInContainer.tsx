@@ -2,6 +2,7 @@ import * as React from "react";
 import { useState, useCallback } from 'react';
 import LogInPresenter from "./LogInPresenter"
 
+import { Http } from "../../Utiles/Axios";
 
 const LogInContainer = () => {
 
@@ -10,9 +11,18 @@ const LogInContainer = () => {
 
     const onChangeId = useCallback((e) => setUserId(e.target.value), []);
     const onChangePw = useCallback((e) => setUserPw(e.target.value), []);
-    const onSubmit = useCallback((e) => {
+    const onSubmit = useCallback(async (e) => {
         e.preventDefault();
-        console.log(userId, userPw);
+        try {
+            const { data: { result: { data: { token }, message } } } = await Http.post("/auth/login", { userId, userPassword: userPw });
+            if (message) {
+                alert(message)
+            }
+            document.cookie = `mgi=${token}`;
+
+        } catch (e) {
+            console.log(e)
+        }
     }, [userId, userPw])
 
 

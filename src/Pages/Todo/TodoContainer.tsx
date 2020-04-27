@@ -1,13 +1,22 @@
 import * as React from "react";
+
 import TodoPresenter from "./TodoPresenter";
 import { useTodoDispatch } from "../../Contexts/TodoContext";
+import { Http } from "../../Utiles/Axios";
+import { useDispatch } from "react-redux";
 
 const TodoContainer = () => {
     const [value, setValue] = React.useState('');
     const dispatch = useTodoDispatch();
-
+    const text = useDispatch();
     const onSubmit = React.useCallback((e: React.FormEvent) => {
         e.preventDefault();
+        text({
+            type: 'CREATE',
+            data: {
+                text: value
+            }
+        })
         dispatch({
             type: 'CREATE',
             data: {
@@ -32,6 +41,14 @@ const TodoContainer = () => {
                 id,
             }
         })
+    }, [])
+
+    React.useEffect(() => {
+        (async () => {
+            const response = await Http.get("https://mydoc.geoniljang.com/board")
+            console.log(response)
+        })();
+
     }, [])
 
 
