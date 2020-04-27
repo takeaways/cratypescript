@@ -5,7 +5,7 @@ export const Container = styled.div`
     padding-top:30px;
 `
 export const TodoForm = styled.form`
-    width:480px;
+    width:400px;
     height:150px;
     margin:0 auto;
 `
@@ -16,7 +16,7 @@ export const TodoItem = styled.p`
 `
 export const Input = styled.textarea`
     resize:none;
-    width:480px;
+    width:400px;
     height:120px;
     padding-left:16px;
     padding-right:16px;
@@ -45,7 +45,7 @@ export const Input = styled.textarea`
 
 `
 export const Button = styled.button`
-    width:480px;
+    width:400px;
     height:30px;
     background-color:#e599f7;
     color:oldlace;

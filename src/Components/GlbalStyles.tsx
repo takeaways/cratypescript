@@ -16,6 +16,23 @@ const GlobalStyles = createGlobalStyle`
     background-color:rgb(248,195,122);
     padding-top:50px;
   }
+
+  @media screen and (max-width:500px){
+    #small-top-menu{
+      display:block !important;
+      z-index:1000 !important;
+    }
+    #logo{
+      width:100vw;
+      position:absolute;
+    }
+    .wide-top-menu{
+      display:none;
+    }
+  }
+
+
+
 `;
 
 export default GlobalStyles

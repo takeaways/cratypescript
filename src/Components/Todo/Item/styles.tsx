@@ -14,7 +14,7 @@ export const List = styled.ul`
 	grid-gap: 25px;     */
 `
 export const ListItem = styled.li`
-    width:480px;
+    width:400px;
     height:160px;
     display:inline-block;
     background-color:#f8f0fc;
@@ -61,7 +61,7 @@ export const ListText = styled.span<{ done?: boolean }>`
     font-size:1.3em;
     color:${props => props.done ? "green" : "#ff6b6b"};
     display:inline-block;
-    width:120px;
+    width:100px;
     &:hover{
         cursor: pointer;
         background-color:#fcc2d7;
