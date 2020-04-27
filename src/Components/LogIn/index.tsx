@@ -1,15 +1,23 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
 import * as Styles from "./styles";
-const LogIn: FunctionComponent = () => {
+import { LogInTypes } from "../../Pages/LogIn/index.d"
+const LogIn: FunctionComponent<LogInTypes> = ({
+    userId,
+    userPw,
+    onChangeId,
+    onChangePw,
+    onSubmit }) => {
     return (
         <Styles.Container>
-            <Styles.Form>
+            <Styles.Form onSubmit={onSubmit}>
                 <Styles.InputBlock>
-                    <Styles.Label htmlFor="id"> 아이디 </Styles.Label> <Styles.Input id="id" />
+                    <Styles.Label htmlFor="id"> 아이디 </Styles.Label>
+                    <Styles.Input id="id" value={userId} onChange={onChangeId} />
                 </Styles.InputBlock>
                 <Styles.InputBlock>
-                    <Styles.Label htmlFor="pw"> 비밀번호 </Styles.Label><Styles.Input id="pw" type="password" />
+                    <Styles.Label htmlFor="pw"> 비밀번호 </Styles.Label>
+                    <Styles.Input id="pw" type="password" value={userPw} onChange={onChangePw} />
                 </Styles.InputBlock>
                 <Styles.InputBlock>
                     <Styles.Text to="/">비밀번호를 잊어버리셨습니까?</Styles.Text>

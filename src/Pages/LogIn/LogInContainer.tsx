@@ -8,7 +8,7 @@ const LogInContainer = () => {
     const [userId, setUserId] = useState<string>("");
     const [userPw, setUserPw] = useState<string>("");
 
-    const onChangeId = useCallback((e) => setUserId(e.arget.value), []);
+    const onChangeId = useCallback((e) => setUserId(e.target.value), []);
     const onChangePw = useCallback((e) => setUserPw(e.target.value), []);
     const onSubmit = useCallback((e) => {
         e.preventDefault();

@@ -10,6 +10,12 @@ const LogInPresenter: FunctionComponent<LogInTypes> = ({
     onChangeId,
     onChangePw,
     onSubmit
-}) => <LogIn />
+}) => <LogIn
+        userId={userId}
+        userPw={userPw}
+        onChangeId={onChangeId}
+        onChangePw={onChangePw}
+        onSubmit={onSubmit}
+    />
 
 export default LogInPresenter;

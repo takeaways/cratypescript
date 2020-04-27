@@ -16,6 +16,9 @@ const Nav: FunctionComponent<RouteComponentProps> = ({ location: { pathname } })
                     <Styles.ListItem current={pathname === "/translate"}>
                         <Styles.ListLink to={"/translate"}>Translate</Styles.ListLink>
                     </Styles.ListItem>
+                    <Styles.ListItem current={pathname === "/todo"}>
+                        <Styles.ListLink to={"/todo"}>Todo</Styles.ListLink>
+                    </Styles.ListItem>
                 </Styles.List>
             </Styles.HeaderBlock>
             <Styles.HeaderBlock>
