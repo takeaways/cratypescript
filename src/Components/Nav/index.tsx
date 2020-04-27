@@ -24,7 +24,9 @@ const Nav: FunctionComponent<RouteComponentProps> = ({ location: { pathname } })
             <Styles.HeaderBlock>
                 <Styles.List>
                     <Styles.ListItem>
-                        <Styles.ListLink to={"/"}>LOGO</Styles.ListLink>
+                        <Styles.ListLink to={"/"}>
+                            <img src="/gilogo.png" alt="logo" width="45px" />
+                        </Styles.ListLink>
                     </Styles.ListItem>
                 </Styles.List>
             </Styles.HeaderBlock>
