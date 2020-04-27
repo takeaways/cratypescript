@@ -26,6 +26,7 @@ const LogIn: FunctionComponent<LogInTypes> = ({
                     <Styles.Submit>로그인</Styles.Submit>
                 </Styles.InputBlock>
             </Styles.Form>
+            <div className="g-signin2" data-onsuccess="onSignIn"></div>
         </Styles.Container>
     );
 }

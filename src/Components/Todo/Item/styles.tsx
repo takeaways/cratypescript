@@ -17,7 +17,7 @@ export const ListItem = styled.li`
     width:400px;
     height:160px;
     display:inline-block;
-    background-color:#f8f0fc;
+    background-color:white;
     border-radius:15px;
     margin-bottom:30px;
     font-size:15px;

@@ -8,6 +8,7 @@ export const Container = styled.div`
 export const Title = styled.span`
 	font-size: 3rem;
 	font-weight: 600;
+	color:white;
 `;
 export const Grid = styled.div`
 	margin-top: 25px;

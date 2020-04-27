@@ -1,5 +1,10 @@
 import * as React from "react";
+import SignUp from "../../Components/Signup";
 
-const LogInPresenter = () =><div>SignUp</div>;
+
+
+const LogInPresenter = () => (
+    <SignUp />
+)
 
 export default LogInPresenter;

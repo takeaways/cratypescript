@@ -10,6 +10,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import * as Styles from "./styles";
 
+const isLoggedIn = false;
+
 const Nav: FunctionComponent<RouteComponentProps> = ({ location: { pathname } }) => {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -35,11 +37,19 @@ const Nav: FunctionComponent<RouteComponentProps> = ({ location: { pathname } })
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
                 >
-                    <MenuItem onClick={handleClose}><Link to={"/"}>Home</Link></MenuItem>
-                    <MenuItem onClick={handleClose}><Link to={"/translate"}>Translate</Link></MenuItem>
-                    <MenuItem onClick={handleClose}><Link to={"/todo"}>Todo</Link></MenuItem>
-                    <MenuItem onClick={handleClose}><Link to={"/login"}>Login</Link></MenuItem>
-                    <MenuItem onClick={handleClose}><Link to={"/signup"}>Signup</Link></MenuItem>
+                    <Link to={"/"}><MenuItem onClick={handleClose}>Home</MenuItem></Link>
+                    <Link to={"/translate"}><MenuItem onClick={handleClose}>Translate</MenuItem></Link>
+                    <Link to={"/todo"}><MenuItem onClick={handleClose}>Todo</MenuItem></Link>
+                    {isLoggedIn ? (
+                        <div>
+                            <MenuItem onClick={handleClose}>Logout</MenuItem>
+                        </div>
+                    ) : (
+                            <div>
+                                <Link to={"/login"}><MenuItem onClick={handleClose}>Login</MenuItem></Link>
+                                <Link to={"/signup"}><MenuItem onClick={handleClose}>Signup</MenuItem></Link>
+                            </div>
+                        )}
                 </Menu>
             </div>
             <Styles.HeaderBlock float={"left"} className="wide-top-menu">
@@ -66,12 +76,20 @@ const Nav: FunctionComponent<RouteComponentProps> = ({ location: { pathname } })
             </Styles.HeaderBlock>
             <Styles.HeaderBlock float={"right"} className="wide-top-menu">
                 <Styles.List>
-                    <Styles.ListItem current={pathname === "/login"}>
-                        <Styles.ListLink to={"/login"}>LogIn</Styles.ListLink>
-                    </Styles.ListItem>
-                    <Styles.ListItem current={pathname === "/signup"}>
-                        <Styles.ListLink to={"/signup"}>SignUp</Styles.ListLink>
-                    </Styles.ListItem>
+                    {isLoggedIn ? (
+                        <Styles.ListItem current={pathname === "/signup"}>
+                            <Styles.ListLink to={"/login"}>Logout</Styles.ListLink>
+                        </Styles.ListItem>
+                    ) : (
+                            <>
+                                <Styles.ListItem current={pathname === "/login"}>
+                                    <Styles.ListLink to={"/login"}>LogIn</Styles.ListLink>
+                                </Styles.ListItem>
+                                <Styles.ListItem current={pathname === "/signup"}>
+                                    <Styles.ListLink to={"/signup"}>SignUp</Styles.ListLink>
+                                </Styles.ListItem>
+                            </>
+                        )}
                 </Styles.List>
             </Styles.HeaderBlock>
         </Styles.Header>
