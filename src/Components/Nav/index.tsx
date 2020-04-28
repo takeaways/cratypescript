@@ -68,7 +68,7 @@ const Nav: FunctionComponent<RouteComponentProps> = ({ location: { pathname } })
             <Styles.HeaderBlock id="logo">
                 <Styles.List>
                     <Styles.ListItem>
-                        <Styles.ListLink to={"/"}>
+                        <Styles.ListLink to={"/"} title="홈으로">
                             <img src="/gilogo.png" alt="logo" width="45px" />
                         </Styles.ListLink>
                     </Styles.ListItem>

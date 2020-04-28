@@ -62,8 +62,17 @@ const postReducer = (state = intialState, action: PostActionTypes) => {
 			};
 		}
 		case REQUEST_UPDATE_POST: {
+			const postIndex = state.posts.findIndex((p) => p.id === action.data.id);
+			const post = state.posts[postIndex];
+			if (action.data.text) {
+				post.text = action.data.text;
+			}
+			const posts = [...state.posts];
+			posts[postIndex] = post;
+
 			return {
-				...state
+				...state,
+				posts
 			};
 		}
 		case SUCCESS_UPDATE_POST: {
