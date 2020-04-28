@@ -49,14 +49,14 @@ export const Http = axios.create({
 });
 
 Http.interceptors.request.use(
-	function (config) {
+	function(config) {
 		const mgi = getCookie('mgi');
 		if (mgi) {
 			config.headers['GI-Key'] = mgi;
 		}
 		return config;
 	},
-	function (error) {
+	function(error) {
 		// Do something with request error
 		return Promise.reject(error);
 	}

@@ -37,7 +37,7 @@ export const ListTitle = styled.div`
     color:#e599f7;
     overflow:hidden;
 `;
-export const ListBody = styled.p`
+export const ListBody = styled.div`
     height:80px;
     font-size:1.2em;
     padding:4px;

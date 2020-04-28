@@ -5,10 +5,14 @@ import { MdDelete, MdDone, MdFavorite, MdModeEdit, MdFavoriteBorder } from "reac
 
 
 export const Item: React.FunctionComponent<TodoItemProps> = ({ todo, onToggle, onRemove }) => {
+
+    const [show, setShow] = React.useState(false);
+
+    const onShow = React.useCallback(() => { setShow(pre => !pre) }, [])
     return (
         <Styles.ListItem>
             <Styles.ListTitle>{todo.auth}</Styles.ListTitle>
-            <Styles.ListBody>{todo.text}</Styles.ListBody>
+            <Styles.ListBody>{show ? todo.text : <div>hello world</div>}</Styles.ListBody>
             <Styles.ListFooter>
                 <Styles.ListText onClick={() => { onRemove(todo.id) }}><MdDelete /></Styles.ListText>
                 <Styles.ListText><MdFavorite /></Styles.ListText>

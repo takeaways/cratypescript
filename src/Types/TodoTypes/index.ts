@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { PostTypes } from '../ReducerTypes/postTypes';
 
 export interface TodoFormTypes {
+	posts?: PostTypes[];
 	value: string;
 	onSubmit: (e: React.FormEvent) => void;
 	onChange: (e: React.ChangeEvent) => void;

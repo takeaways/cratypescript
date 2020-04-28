@@ -1,31 +1,43 @@
 import * as React from "react";
 
 import TodoPresenter from "./TodoPresenter";
-import { useTodoDispatch } from "../../Contexts/TodoContext";
 import { Http } from "../../Utiles/Axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { REQUEST_CREATE_POST, REQUEST_DELETE_POST } from "../../Reducer/post/actionNames";
+import { RootState } from "../../Reducer";
 
 const TodoContainer = () => {
+    const posts = useSelector((state: RootState) => state.post.posts);
+    const dispatch = useDispatch();
+
     const [value, setValue] = React.useState('');
-    const dispatch = useTodoDispatch();
-    const text = useDispatch();
+
+    //events handlers
+    const onChange = React.useCallback((e) => setValue(e.target.value), []);
+
     const onSubmit = React.useCallback((e: React.FormEvent) => {
         e.preventDefault();
-        text({
-            type: 'CREATE',
-            data: {
-                text: value
-            }
-        })
         dispatch({
-            type: 'CREATE',
+            type: REQUEST_CREATE_POST,
             data: {
-                text: value
+                text: value,
+                auth: "GeonilJang"
             }
         })
         setValue('');
     }, [value]);
-    const onChange = React.useCallback((e) => setValue(e.target.value), []);
+
+    const onRemove = React.useCallback((id) => {
+        dispatch({
+            type: REQUEST_DELETE_POST,
+            data: {
+                id,
+            }
+        })
+    }, []);
+
+
+
     const onToggle = React.useCallback((id) => {
         dispatch({
             type: 'TOGGLE',
@@ -34,14 +46,7 @@ const TodoContainer = () => {
             }
         })
     }, [])
-    const onRemove = React.useCallback((id) => {
-        dispatch({
-            type: 'REMOVE',
-            data: {
-                id,
-            }
-        })
-    }, [])
+
 
     React.useEffect(() => {
         (async () => {
@@ -52,7 +57,9 @@ const TodoContainer = () => {
     }, [])
 
 
+
     return <TodoPresenter
+        posts={posts}
         value={value}
         onSubmit={onSubmit}
         onChange={onChange}

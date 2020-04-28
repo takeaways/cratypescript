@@ -1,6 +1,8 @@
-import { createStore, combineReducers } from 'redux';
-import todo from './post';
+import { combineReducers } from 'redux';
+import post from './post';
+import { PostIntialStateTypes } from '../Types/ReducerTypes/postTypes';
 
-const rootReducer = combineReducers({ todo });
+const rootReducer = combineReducers({ post });
 export default rootReducer;
-// export type RootState = ReturnType<typeof rootReducer>;
+
+export type RootState = ReturnType<typeof rootReducer>;

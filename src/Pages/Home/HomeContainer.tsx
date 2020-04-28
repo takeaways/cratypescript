@@ -1,9 +1,9 @@
 import * as React from "react";
-import {useEffect, useState, useCallback} from "react";
+import { useEffect, useState, useCallback } from "react";
 
 
 import HomePresenter from "./HomePresenter"
-import {moviesApi} from "../../Utiles/Axios";
+import { moviesApi } from "../../Utiles/Axios/";
 
 const HomeContainer = () => {
 
@@ -17,9 +17,9 @@ const HomeContainer = () => {
     useEffect(() => {
         (async () => {
             try {
-                const {data: {results: nowPlayingResult}} = await moviesApi.nowPlaying();
-                const {data: {results: upComingResult}} = await moviesApi.upcoming();
-                const {data: {results: popularResult}} = await moviesApi.popular();
+                const { data: { results: nowPlayingResult } } = await moviesApi.nowPlaying();
+                const { data: { results: upComingResult } } = await moviesApi.upcoming();
+                const { data: { results: popularResult } } = await moviesApi.popular();
                 setNowPlaying(nowPlayingResult);
                 setUpcoming(upComingResult);
                 setPopular(popularResult);
