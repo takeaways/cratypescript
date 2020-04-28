@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { FunctionComponent } from 'react';
-
 import { HomePresenterTypes } from './index.d';
 
 import Section from '../../Components/Section';
 import Poster from '../../Components/Poster';
 import Loader from '../../Components/Loader';
+
 
 const HomePresenter: FunctionComponent<HomePresenterTypes> = ({
 	nowPlaying,
@@ -14,8 +14,7 @@ const HomePresenter: FunctionComponent<HomePresenterTypes> = ({
 	error,
 	loading,
 }) => {
-	return loading ? (
-		<Loader />
+	return loading ? (<Loader />
 	) : (
 			<div>
 				{nowPlaying && nowPlaying.length > 0 && (

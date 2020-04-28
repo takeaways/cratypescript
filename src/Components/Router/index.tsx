@@ -6,18 +6,21 @@ import {
 	Switch,
 } from 'react-router-dom';
 
-import Home from '../../Pages/Home';
-import Detail from '../../Pages/Detail';
-import Translate from '../../Pages/Translate';
-import Todo from '../../Pages/Todo';
 
-import LogIn from '../../Pages/LogIn';
-import SignUp from '../../Pages/SignUp';
 import Nav from '../Nav';
+import Loader from '../Loader';
+
+const Home = React.lazy(() => import('../../Pages/Home'));
+const Detail = React.lazy(() => import('../../Pages/Detail'));
+const Translate = React.lazy(() => import('../../Pages/Translate'));
+const Todo = React.lazy(() => import('../../Pages/Todo'));
+const LogIn = React.lazy(() => import('../../Pages/LogIn'));
+const SignUp = React.lazy(() => import('../../Pages/SignUp'));
+
 
 export default () => {
 	return (
-		<>
+		<React.Suspense fallback={<Loader />}>
 			<Router>
 				<Nav />
 				<Switch>
@@ -30,6 +33,6 @@ export default () => {
 					<Redirect from={'*'} to={'/'} />
 				</Switch>
 			</Router>
-		</>
+		</React.Suspense>
 	);
 };
