@@ -12,7 +12,8 @@ import {
 	FAILURE_DELETE_POST,
 	REQUEST_UPDATE_POST,
 	SUCCESS_UPDATE_POST,
-	FAILURE_UPDATE_POST
+	FAILURE_UPDATE_POST,
+	REQUEST_GET_POSTS
 } from './actionNames';
 
 export const intialState: PostIntialStateTypes = {
@@ -20,7 +21,21 @@ export const intialState: PostIntialStateTypes = {
 };
 
 const postReducer = (state = intialState, action: PostActionTypes) => {
+	const myStorage = window.localStorage;
 	switch (action.type) {
+		case REQUEST_GET_POSTS: {
+			const myPosts = myStorage.getItem('posts');
+			if (myPosts) {
+				return {
+					...state,
+					posts: JSON.parse(myPosts)
+				};
+			} else {
+				return {
+					...state
+				};
+			}
+		}
 		case REQUEST_CREATE_POST: {
 			const test = {
 				id: state.posts.length,
@@ -28,6 +43,15 @@ const postReducer = (state = intialState, action: PostActionTypes) => {
 				liked: false,
 				...action.data
 			};
+			const myPosts = myStorage.getItem('posts');
+			if (myPosts) {
+				const parse = JSON.parse(myPosts);
+				parse.push(test);
+				myStorage.setItem('posts', JSON.stringify(parse));
+			} else {
+				myStorage.setItem('posts', JSON.stringify([test]));
+			}
+
 			return {
 				...state,
 				posts: [test, ...state.posts]
@@ -46,6 +70,7 @@ const postReducer = (state = intialState, action: PostActionTypes) => {
 		case REQUEST_DELETE_POST: {
 			const id = action.data.id;
 			const filteredPosts = state.posts.filter((post) => post.id !== id);
+			myStorage.setItem('posts', JSON.stringify(filteredPosts));
 			return {
 				...state,
 				posts: filteredPosts
@@ -69,7 +94,7 @@ const postReducer = (state = intialState, action: PostActionTypes) => {
 			}
 			const posts = [...state.posts];
 			posts[postIndex] = post;
-
+			myStorage.setItem('posts', JSON.stringify(posts));
 			return {
 				...state,
 				posts

@@ -4,6 +4,7 @@ import GlobalStyles from "./Components/GlbalStyles";
 import { TodoContextProvider } from './Contexts/TodoContext';
 
 function App() {
+
     return (
         <TodoContextProvider>
             <Router />

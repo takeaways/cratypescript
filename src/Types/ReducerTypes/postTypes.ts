@@ -7,7 +7,8 @@ import {
 	FAILURE_DELETE_POST,
 	REQUEST_UPDATE_POST,
 	SUCCESS_UPDATE_POST,
-	FAILURE_UPDATE_POST
+	FAILURE_UPDATE_POST,
+	REQUEST_GET_POSTS
 } from '../../Reducer/post/actionNames';
 
 export type PostTypes = {
@@ -23,6 +24,9 @@ export type PostIntialStateTypes = {
 };
 
 export type PostActionTypes =
+	| {
+			type: typeof REQUEST_GET_POSTS;
+	  }
 	| {
 			type: typeof REQUEST_CREATE_POST;
 			data: {

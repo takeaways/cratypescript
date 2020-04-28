@@ -3,7 +3,7 @@ import * as React from "react";
 import TodoPresenter from "./TodoPresenter";
 import { Http } from "../../Utiles/Axios";
 import { useDispatch, useSelector } from "react-redux";
-import { REQUEST_CREATE_POST, REQUEST_DELETE_POST } from "../../Reducer/post/actionNames";
+import { REQUEST_CREATE_POST, REQUEST_DELETE_POST, REQUEST_GET_POSTS } from "../../Reducer/post/actionNames";
 import { RootState } from "../../Reducer";
 
 const TodoContainer = () => {
@@ -21,7 +21,7 @@ const TodoContainer = () => {
             type: REQUEST_CREATE_POST,
             data: {
                 text: value,
-                auth: "GeonilJang"
+                auth: "Me"
             }
         })
         setValue('');
@@ -51,7 +51,9 @@ const TodoContainer = () => {
     React.useEffect(() => {
         (async () => {
             const response = await Http.get("https://mydoc.geoniljang.com/board")
-            console.log(response)
+            dispatch({
+                type: REQUEST_GET_POSTS
+            })
         })();
 
     }, [])
