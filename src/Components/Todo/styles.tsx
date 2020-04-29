@@ -49,14 +49,22 @@ export const Button = styled.button`
     height:30px;
     background-color:#e599f7;
     color:oldlace;
-    font-size:1.0rem;
+    font-size:1.7rem;
     border-radius: 0 0 15px 15px;
     outline:none;
     border:0;
     margin-bottom:0;
+    & svg {
+            transition:transform 0.5s ease-in-out;
+            transform:rotate(-180deg);
+        }
+   
     &:hover{
         cursor: pointer;
-        color: #e7f5ff;
+        & svg {
+            transition:transform 1s ease-in-out;
+            transform:rotate(180deg);
+        }
     };
     &:active{
         background-color: #cc5de8;

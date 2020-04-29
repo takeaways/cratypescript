@@ -13,7 +13,10 @@ import {
 	REQUEST_UPDATE_POST,
 	SUCCESS_UPDATE_POST,
 	FAILURE_UPDATE_POST,
-	REQUEST_GET_POSTS
+	REQUEST_GET_POSTS,
+	REQUEST_LIKE,
+	SUCCESS_LIKE,
+	FAILURE_LIKE
 } from './actionNames';
 
 export const intialState: PostIntialStateTypes = {
@@ -38,7 +41,7 @@ const postReducer = (state = intialState, action: PostActionTypes) => {
 		}
 		case REQUEST_CREATE_POST: {
 			const test = {
-				id: state.posts.length,
+				id: Math.floor(Math.random() * 100000),
 				done: false,
 				liked: false,
 				...action.data
@@ -106,6 +109,28 @@ const postReducer = (state = intialState, action: PostActionTypes) => {
 			};
 		}
 		case FAILURE_UPDATE_POST: {
+			return {
+				...state
+			};
+		}
+		case REQUEST_LIKE: {
+			const index = state.posts.findIndex((p) => p.id === action.data.id);
+			const post = state.posts[index];
+			post.liked = !post.liked;
+			const posts = [...state.posts];
+			posts[index] = post;
+			myStorage.setItem('posts', JSON.stringify(posts));
+			return {
+				...state,
+				posts
+			};
+		}
+		case SUCCESS_LIKE: {
+			return {
+				...state
+			};
+		}
+		case FAILURE_LIKE: {
 			return {
 				...state
 			};

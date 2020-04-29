@@ -6,7 +6,7 @@ import { useTodoState } from "../../Contexts/TodoContext";
 
 
 
-const TodoPresenter: React.FunctionComponent<TodoFormTypes> = ({ posts, value, onSubmit, onChange, onToggle, onRemove }) => {
+const TodoPresenter: React.FunctionComponent<TodoFormTypes> = ({ posts, value, onSubmit, onChange, onLike, onRemove }) => {
 
     return (
         <>
@@ -15,9 +15,9 @@ const TodoPresenter: React.FunctionComponent<TodoFormTypes> = ({ posts, value, o
                 onSubmit={onSubmit}
                 onChange={onChange}
             />
-            {posts && posts.length > 0 && onToggle && onRemove && (
+            {posts && posts.length > 0 && onLike && onRemove && (
                 <List>
-                    {posts.map(t => <Item key={t.id} todo={t} onToggle={onToggle} onRemove={onRemove} />)}
+                    {posts.map(t => <Item key={t.id} todo={t} onLike={onLike} onRemove={onRemove} />)}
                 </List>
             )}
         </>)

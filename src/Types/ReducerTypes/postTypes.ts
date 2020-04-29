@@ -8,7 +8,10 @@ import {
 	REQUEST_UPDATE_POST,
 	SUCCESS_UPDATE_POST,
 	FAILURE_UPDATE_POST,
-	REQUEST_GET_POSTS
+	REQUEST_GET_POSTS,
+	REQUEST_LIKE,
+	SUCCESS_LIKE,
+	FAILURE_LIKE
 } from '../../Reducer/post/actionNames';
 
 export type PostTypes = {
@@ -83,6 +86,24 @@ export type PostActionTypes =
 	  }
 	| {
 			type: typeof FAILURE_UPDATE_POST;
+			data: {
+				id: number;
+			};
+	  }
+	| {
+			type: typeof REQUEST_LIKE;
+			data: {
+				id: number;
+			};
+	  }
+	| {
+			type: typeof SUCCESS_LIKE;
+			data: {
+				id: number;
+			};
+	  }
+	| {
+			type: typeof FAILURE_LIKE;
 			data: {
 				id: number;
 			};

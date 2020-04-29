@@ -3,7 +3,7 @@ import * as React from "react";
 import TodoPresenter from "./TodoPresenter";
 import { Http } from "../../Utiles/Axios";
 import { useDispatch, useSelector } from "react-redux";
-import { REQUEST_CREATE_POST, REQUEST_DELETE_POST, REQUEST_GET_POSTS } from "../../Reducer/post/actionNames";
+import { REQUEST_CREATE_POST, REQUEST_DELETE_POST, REQUEST_GET_POSTS, REQUEST_LIKE } from "../../Reducer/post/actionNames";
 import { RootState } from "../../Reducer";
 
 const TodoContainer = () => {
@@ -38,9 +38,9 @@ const TodoContainer = () => {
 
 
 
-    const onToggle = React.useCallback((id) => {
+    const onLike = React.useCallback((id) => {
         dispatch({
-            type: 'TOGGLE',
+            type: REQUEST_LIKE,
             data: {
                 id,
             }
@@ -51,6 +51,7 @@ const TodoContainer = () => {
     React.useEffect(() => {
         (async () => {
             const response = await Http.get("https://mydoc.geoniljang.com/board")
+            console.log(response)
             dispatch({
                 type: REQUEST_GET_POSTS
             })
@@ -63,10 +64,11 @@ const TodoContainer = () => {
     return <TodoPresenter
         posts={posts}
         value={value}
-        onSubmit={onSubmit}
         onChange={onChange}
-        onToggle={onToggle}
+        onSubmit={onSubmit}
         onRemove={onRemove}
+        onLike={onLike}
+
     />
 }
 

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { TodoFormTypes } from "../../Types/TodoTypes";
 import * as Styles from "./styles";
+import { MdAddCircle } from "react-icons/md";
 
 const Todo: React.FunctionComponent<TodoFormTypes> = ({
     value,
@@ -18,7 +19,7 @@ const Todo: React.FunctionComponent<TodoFormTypes> = ({
                         onChange={onChange} />
                 </Styles.TodoItem>
                 <Styles.TodoItem>
-                    <Styles.Button>등록</Styles.Button>
+                    <Styles.Button><MdAddCircle /></Styles.Button>
                 </Styles.TodoItem>
             </Styles.TodoForm>
         </Styles.Container>

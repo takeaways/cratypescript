@@ -6,7 +6,7 @@ export interface TodoFormTypes {
 	value: string;
 	onSubmit: (e: React.FormEvent) => void;
 	onChange: (e: React.ChangeEvent) => void;
-	onToggle?: (id: number) => void;
+	onLike?: (id: number) => void;
 	onRemove?: (id: number) => void;
 }
 
@@ -19,7 +19,7 @@ export interface TodoFormTypes {
 
 export interface TodoItemProps {
 	todo: TodoTypes;
-	onToggle: (id: number) => void;
+	onLike: (id: number) => void;
 	onRemove: (id: number) => void;
 }
 

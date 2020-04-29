@@ -5,7 +5,7 @@ import { MdDelete, MdDone, MdFavorite, MdModeEdit, MdFavoriteBorder } from "reac
 import Editor from "../Edit";
 
 
-export const Item: React.FunctionComponent<TodoItemProps> = ({ todo, onToggle, onRemove }) => {
+export const Item: React.FunctionComponent<TodoItemProps> = ({ todo, onLike, onRemove }) => {
 
     const [show, setShow] = React.useState<boolean>(true);
 
@@ -16,8 +16,8 @@ export const Item: React.FunctionComponent<TodoItemProps> = ({ todo, onToggle, o
             <Styles.ListBody>{show ? todo.text : <Editor text={todo.text} id={todo.id} setShow={setShow} />}</Styles.ListBody>
             <Styles.ListFooter>
                 <Styles.ListText title="삭제" onClick={() => { onRemove(todo.id) }}><MdDelete /></Styles.ListText>
-                <Styles.ListText title="좋아요"><MdFavorite /></Styles.ListText>
-                <Styles.ListText title="완료" onClick={() => { onToggle(todo.id) }} done={todo.done}><MdDone /></Styles.ListText>
+                <Styles.ListText title="좋아요" onClick={() => { onLike(todo.id) }} >{todo.liked ? <MdFavorite /> : <MdFavoriteBorder />}</Styles.ListText>
+                <Styles.ListText title="완료" done={todo.done}><MdDone /></Styles.ListText>
                 <Styles.ListText title="수정" onClick={() => { onShow() }}><MdModeEdit /></Styles.ListText>
             </Styles.ListFooter>
         </Styles.ListItem>
