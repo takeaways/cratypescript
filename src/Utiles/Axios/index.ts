@@ -45,7 +45,7 @@ export const moviesApi = {
 };
 
 export const Http = axios.create({
-	baseURL: 'https://mydoc.geoniljang.com'
+	baseURL: 'http://localhost:8000'
 });
 
 Http.interceptors.request.use(

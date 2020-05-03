@@ -1,11 +1,13 @@
 import * as React from "react";
 import { useState, useCallback } from 'react';
+import { useHistory } from "react-router-dom";
 import LogInPresenter from "./LogInPresenter"
 
 import { Http } from "../../Utiles/Axios";
 
 const LogInContainer = () => {
 
+    const history = useHistory();
     const [userId, setUserId] = useState<string>("");
     const [userPw, setUserPw] = useState<string>("");
 
@@ -14,11 +16,13 @@ const LogInContainer = () => {
     const onSubmit = useCallback(async (e) => {
         e.preventDefault();
         try {
-            const { data: { result: { data: { token }, message } } } = await Http.post("/auth/login", { userId, userPassword: userPw });
-            if (message) {
-                alert(message)
+            const res = await Http.post("/user/login", { userId, password: userPw }, { withCredentials: true });
+            console.log(res.data)
+            if (res.data.nickname) {
+                alert("로그인 되었습니다.");
+                history.goBack();
             }
-            document.cookie = `mgi=${token}`;
+
 
         } catch (e) {
             console.log(e)
