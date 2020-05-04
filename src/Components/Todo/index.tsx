@@ -1,9 +1,9 @@
 import * as React from "react";
-import { TodoFormTypes } from "../../Types/TodoTypes";
+
 import * as Styles from "./styles";
 import { MdAddCircle } from "react-icons/md";
 
-const Todo: React.FunctionComponent<TodoFormTypes> = ({
+const Todo: React.FunctionComponent<any> = ({
     value,
     onChange,
     onSubmit

@@ -10,12 +10,16 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import * as Styles from "./styles";
 
-const isLoggedIn = false;
+import useUser from "../../Hooks/User/useGetUser"
+import useLoadUser from "../../Hooks/User/useLoadUser"
+import { User } from "../../Reducer/user";
+
 
 const Nav: FunctionComponent<RouteComponentProps> = ({ location: { pathname } }) => {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
-
+    const user = useUser();
+    const loadUser = useLoadUser();
     const handleClick = (event: any) => {
         setAnchorEl(event.currentTarget);
     };
@@ -23,6 +27,10 @@ const Nav: FunctionComponent<RouteComponentProps> = ({ location: { pathname } })
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    React.useEffect(() => {
+        loadUser();
+    }, [])
 
     return (
         <Styles.Header>
@@ -37,10 +45,10 @@ const Nav: FunctionComponent<RouteComponentProps> = ({ location: { pathname } })
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
                 >
+                    {/* {(user as User).id && <span style={{ lineHeight: "50px", height: "50px" }}>{(user as User).nickname} 님 반갑습니다.</span>} */}
                     <Link to={"/"}><MenuItem onClick={handleClose}>Home</MenuItem></Link>
-                    <Link to={"/translate"}><MenuItem onClick={handleClose}>Translate</MenuItem></Link>
                     <Link to={"/todo"}><MenuItem onClick={handleClose}>Todo</MenuItem></Link>
-                    {isLoggedIn ? (
+                    {(user as User).id ? (
                         <div>
                             <MenuItem onClick={handleClose}>Logout</MenuItem>
                         </div>
@@ -57,9 +65,6 @@ const Nav: FunctionComponent<RouteComponentProps> = ({ location: { pathname } })
                     <Styles.ListItem current={pathname === "/"}>
                         <Styles.ListLink to={"/"}>Home</Styles.ListLink>
                     </Styles.ListItem>
-                    <Styles.ListItem current={pathname === "/translate"}>
-                        <Styles.ListLink to={"/translate"}>Translate</Styles.ListLink>
-                    </Styles.ListItem>
                     <Styles.ListItem current={pathname === "/todo"}>
                         <Styles.ListLink to={"/todo"}>Todo</Styles.ListLink>
                     </Styles.ListItem>
@@ -75,11 +80,14 @@ const Nav: FunctionComponent<RouteComponentProps> = ({ location: { pathname } })
                 </Styles.List>
             </Styles.HeaderBlock>
             <Styles.HeaderBlock float={"right"} className="wide-top-menu">
+                {(user as User).id && <span style={{ lineHeight: "50px", height: "50px" }}>{(user as User).nickname} 님 반갑습니다.</span>}
                 <Styles.List>
-                    {isLoggedIn ? (
-                        <Styles.ListItem current={pathname === "/signup"}>
-                            <Styles.ListLink to={"/login"}>Logout</Styles.ListLink>
-                        </Styles.ListItem>
+                    {(user as User).id ? (
+                        <>
+                            <Styles.ListItem current={pathname === "/signup"}>
+                                <Styles.ListLink to={"/login"}>Logout</Styles.ListLink>
+                            </Styles.ListItem>
+                        </>
                     ) : (
                             <>
                                 <Styles.ListItem current={pathname === "/login"}>

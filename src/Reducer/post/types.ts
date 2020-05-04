@@ -11,7 +11,7 @@ import {
 	REQUEST_GET_POSTS,
 	REQUEST_LIKE,
 	SUCCESS_LIKE,
-	FAILURE_LIKE
+	FAILURE_LIKE,
 } from '../../Reducer/post/actionNames';
 
 export type PostTypes = {

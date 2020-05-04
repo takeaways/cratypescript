@@ -1,11 +1,10 @@
 import * as React from "react";
 import * as Styles from "./styles";
-import { TodoItemProps } from "../../../Types/TodoTypes";
 import { MdDelete, MdDone, MdFavorite, MdModeEdit, MdFavoriteBorder } from "react-icons/md";
 import Editor from "../Edit";
 
 
-export const Item: React.FunctionComponent<TodoItemProps> = ({ todo, onLike, onRemove }) => {
+export const Item: React.FunctionComponent<any> = ({ todo, onLike, onRemove }) => {
 
     const [show, setShow] = React.useState<boolean>(true);
 

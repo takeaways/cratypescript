@@ -1,7 +1,4 @@
-import {
-	PostActionTypes,
-	PostIntialStateTypes
-} from '../../Types/ReducerTypes/postTypes';
+import { PostActionTypes, PostIntialStateTypes } from './types';
 
 import {
 	REQUEST_CREATE_POST,
@@ -16,11 +13,11 @@ import {
 	REQUEST_GET_POSTS,
 	REQUEST_LIKE,
 	SUCCESS_LIKE,
-	FAILURE_LIKE
+	FAILURE_LIKE,
 } from './actionNames';
 
 export const initialState: PostIntialStateTypes = {
-	posts: []
+	posts: [],
 };
 
 const postReducer = (
@@ -34,11 +31,11 @@ const postReducer = (
 			if (myPosts) {
 				return {
 					...state,
-					posts: JSON.parse(myPosts)
+					posts: JSON.parse(myPosts),
 				};
 			} else {
 				return {
-					...state
+					...state,
 				};
 			}
 		}
@@ -47,7 +44,7 @@ const postReducer = (
 				id: Math.floor(Math.random() * 100000),
 				done: false,
 				liked: false,
-				...action.data
+				...action.data,
 			};
 			const myPosts = myStorage.getItem('posts');
 			if (myPosts) {
@@ -60,17 +57,17 @@ const postReducer = (
 
 			return {
 				...state,
-				posts: [test, ...state.posts]
+				posts: [test, ...state.posts],
 			};
 		}
 		case SUCCESS_CREATE_POST: {
 			return {
-				...state
+				...state,
 			};
 		}
 		case FAILURE_CREATE_POST: {
 			return {
-				...state
+				...state,
 			};
 		}
 		case REQUEST_DELETE_POST: {
@@ -79,17 +76,17 @@ const postReducer = (
 			myStorage.setItem('posts', JSON.stringify(filteredPosts));
 			return {
 				...state,
-				posts: filteredPosts
+				posts: filteredPosts,
 			};
 		}
 		case SUCCESS_DELETE_POST: {
 			return {
-				...state
+				...state,
 			};
 		}
 		case FAILURE_DELETE_POST: {
 			return {
-				...state
+				...state,
 			};
 		}
 		case REQUEST_UPDATE_POST: {
@@ -103,17 +100,17 @@ const postReducer = (
 			myStorage.setItem('posts', JSON.stringify(posts));
 			return {
 				...state,
-				posts
+				posts,
 			};
 		}
 		case SUCCESS_UPDATE_POST: {
 			return {
-				...state
+				...state,
 			};
 		}
 		case FAILURE_UPDATE_POST: {
 			return {
-				...state
+				...state,
 			};
 		}
 		case REQUEST_LIKE: {
@@ -125,17 +122,17 @@ const postReducer = (
 			myStorage.setItem('posts', JSON.stringify(posts));
 			return {
 				...state,
-				posts
+				posts,
 			};
 		}
 		case SUCCESS_LIKE: {
 			return {
-				...state
+				...state,
 			};
 		}
 		case FAILURE_LIKE: {
 			return {
-				...state
+				...state,
 			};
 		}
 		default: {

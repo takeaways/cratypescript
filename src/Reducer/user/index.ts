@@ -1,32 +1,37 @@
-import { REQUEST_LOG_IN, SUCCESS_LOG_IN, FAILURE_LOG_IN } from './actionNames';
-import { UserInitailStateTypes, UserActionTypes } from './types';
+import { SUCCESS_LOG_IN } from './actionNames';
+import { UserActionTypes } from './types';
 
-export const initialState: UserInitailStateTypes = {
-	user: undefined
+export type User = {
+	id: number;
+	nickname: string;
+	userId: string;
+	createdAt: string;
+	updatedAt: string;
+	Posts: string[];
+	Followings: string[];
+	Followers: string[];
 };
 
-const userReducer = (
-	state = initialState,
+interface initialStateType {
+	user: User | {};
+}
+
+const initialState: initialStateType = {
+	user: {},
+};
+
+export default (
+	state: initialStateType = initialState,
 	action: UserActionTypes
-): UserInitailStateTypes => {
+): initialStateType => {
 	switch (action.type) {
-		case REQUEST_LOG_IN: {
-			return { ...state };
-		}
 		case SUCCESS_LOG_IN: {
-			console.log('--> ', action.data);
 			return {
 				...state,
-				user: action.data.user
+				user: action.data,
 			};
 		}
-		case FAILURE_LOG_IN: {
-			return { ...state };
-		}
-		default: {
+		default:
 			return state;
-		}
 	}
 };
-
-export default userReducer;

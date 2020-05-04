@@ -14,10 +14,10 @@ import Nav from '../Nav';
 import Loader from '../Loader';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../Reducer';
+import { User } from '../../Reducer/user';
 
 const Home = React.lazy(() => import('../../Pages/Home'));
 const Detail = React.lazy(() => import('../../Pages/Detail'));
-const Translate = React.lazy(() => import('../../Pages/Translate'));
 const Todo = React.lazy(() => import('../../Pages/Todo'));
 const LogIn = React.lazy(() => import('../../Pages/LogIn'));
 const SignUp = React.lazy(() => import('../../Pages/SignUp'));
@@ -28,11 +28,10 @@ interface CustomRouteProps extends RouteProps {
 const IsLoggedIn = () => { }
 const IsNotLoggedIn = ({ component: Component, ...params }: CustomRouteProps) => {
 	const user = useSelector((state: RootState) => state.user.user)
-	console.log("---> user , ", user?.id)
 	return (
 		<Route
 			{...params}
-			render={props => user?.id ? <Redirect to="/" /> : <Component {...props} />
+			render={props => (user as User).id ? <Redirect to="/" /> : <Component {...props} />
 			}
 		/>
 	);
@@ -47,7 +46,6 @@ export default () => {
 				<Switch>
 					<Route exact path={'/'} component={Home} />
 					<Route path={'/movie/:id'} component={Detail} />
-					<Route path={'/translate'} component={Translate} />
 					<Route path={'/todo'} component={Todo} />
 					<IsNotLoggedIn path={'/login'} component={LogIn} />
 					<IsNotLoggedIn path={'/signup'} component={SignUp} />
