@@ -19,11 +19,14 @@ import {
 	FAILURE_LIKE
 } from './actionNames';
 
-export const intialState: PostIntialStateTypes = {
+export const initialState: PostIntialStateTypes = {
 	posts: []
 };
 
-const postReducer = (state = intialState, action: PostActionTypes) => {
+const postReducer = (
+	state = initialState,
+	action: PostActionTypes
+): PostIntialStateTypes => {
 	const myStorage = window.localStorage;
 	switch (action.type) {
 		case REQUEST_GET_POSTS: {
