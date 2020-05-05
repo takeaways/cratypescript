@@ -57,7 +57,7 @@ const Nav: FunctionComponent<RouteComponentProps> = ({ location: { pathname } })
                     <Link to={"/todo"}><MenuItem onClick={handleClose}>Todo</MenuItem></Link>
                     {(user as User).id ? (
                         <div>
-                            <MenuItem onClick={handleClose} >Logout</MenuItem>
+                            <MenuItem onClick={onLogOut} >Logout</MenuItem>
                         </div>
                     ) : (
                             <div>
