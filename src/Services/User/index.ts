@@ -44,7 +44,7 @@ export const Signup = async (auth: {
 	nickname: string;
 }) => {
 	try {
-		const result = await Http.post(`${process.env.API_URL}/user`, auth);
+		const result = await Http.post(`/user`, auth);
 		return Promise.resolve(result.data);
 	} catch (error) {
 		console.log('User Service Error Signup>> ', error);
