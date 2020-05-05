@@ -1,3 +1,7 @@
 export const REQUEST_LOG_IN = 'REQUEST_LOG_IN';
 export const SUCCESS_LOG_IN = 'SUCCESS_LOG_IN';
 export const FAILURE_LOG_IN = 'FAILURE_LOG_IN';
+
+export const REQUEST_LOG_OUT = 'REQUEST_LOG_OUT';
+export const SUCCESS_LOG_OUT = 'SUCCESS_LOG_OUT';
+export const FAILURE_LOG_OUT = 'FAILURE_LOG_OUT';

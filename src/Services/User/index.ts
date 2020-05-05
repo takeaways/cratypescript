@@ -2,7 +2,8 @@ import { Http } from '../../Utiles/Axios';
 
 export const Load = async () => {
 	try {
-		const result = await Http.get(`https://ts-api.geoniljang.com/user`, {
+		console.log(process.env.API_URL);
+		const result = await Http.get(`/user`, {
 			withCredentials: true,
 		});
 		return Promise.resolve(result.data);
@@ -14,13 +15,9 @@ export const Load = async () => {
 
 export const Login = async (auth: { userId: string; password: string }) => {
 	try {
-		const result = await Http.post(
-			`https://ts-api.geoniljang.com/user/login`,
-			auth,
-			{
-				withCredentials: true,
-			}
-		);
+		const result = await Http.post(`/user/login`, auth, {
+			withCredentials: true,
+		});
 		return Promise.resolve(result.data);
 	} catch (error) {
 		console.log('User Service Error Login>> ', error);
@@ -30,7 +27,7 @@ export const Login = async (auth: { userId: string; password: string }) => {
 
 export const Logout = async () => {
 	try {
-		const result = await Http.get(``, {
+		const result = await Http.get(`/user/logout`, {
 			withCredentials: true,
 		});
 		return Promise.resolve(result.data);
@@ -47,7 +44,7 @@ export const Signup = async (auth: {
 	nickname: string;
 }) => {
 	try {
-		const result = await Http.post(`https://ts-api.geoniljang.com/user`, auth);
+		const result = await Http.post(`${process.env.API_URL}/user`, auth);
 		return Promise.resolve(result.data);
 	} catch (error) {
 		console.log('User Service Error Signup>> ', error);

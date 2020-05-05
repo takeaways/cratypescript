@@ -14,12 +14,12 @@ function getCookie(cookie_name: string) {
 }
 
 const api = axios.create({
-	baseURL: 'https://api.themoviedb.org/3/'
+	baseURL: 'https://api.themoviedb.org/3/',
 });
 
 const params = {
 	api_key: '53745ed1ba6c203b1ca1ace58d0a7e97',
-	language: 'en-US'
+	language: 'en-US',
 };
 
 export const moviesApi = {
@@ -32,20 +32,23 @@ export const moviesApi = {
 		api.get(`movie/${id}`, {
 			params: {
 				...params,
-				append_to_response: 'videos'
-			}
+				append_to_response: 'videos',
+			},
 		}),
 	search: (term: string) =>
 		api.get('search/movie', {
 			params: {
 				...params,
-				query: encodeURIComponent(term)
-			}
-		})
+				query: encodeURIComponent(term),
+			},
+		}),
 };
-
+console.log('process....', process.env.NODE_ENV);
 export const Http = axios.create({
-	baseURL: 'http://localhost:8000'
+	baseURL:
+		process.env.NODE_ENV === 'development'
+			? 'http://localhost:8000'
+			: 'ts-api.geoniljang.com',
 });
 
 Http.interceptors.request.use(

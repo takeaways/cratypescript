@@ -1,4 +1,4 @@
-import { SUCCESS_LOG_IN } from './actionNames';
+import { SUCCESS_LOG_IN, SUCCESS_LOG_OUT } from './actionNames';
 import { UserActionTypes } from './types';
 
 export type User = {
@@ -29,6 +29,12 @@ export default (
 			return {
 				...state,
 				user: action.data,
+			};
+		}
+		case SUCCESS_LOG_OUT: {
+			return {
+				...state,
+				user: {},
 			};
 		}
 		default:

@@ -10,16 +10,18 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import * as Styles from "./styles";
 
-import useUser from "../../Hooks/User/useGetUser"
+import useGetUser from "../../Hooks/User/useGetUser"
 import useLoadUser from "../../Hooks/User/useLoadUser"
 import { User } from "../../Reducer/user";
+import useLogOut from "../../Hooks/User/useLogOut";
 
 
 const Nav: FunctionComponent<RouteComponentProps> = ({ location: { pathname } }) => {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const user = useUser();
+    const user = useGetUser();
     const loadUser = useLoadUser();
+    const logout = useLogOut();
     const handleClick = (event: any) => {
         setAnchorEl(event.currentTarget);
     };
@@ -28,7 +30,12 @@ const Nav: FunctionComponent<RouteComponentProps> = ({ location: { pathname } })
         setAnchorEl(null);
     };
 
+    const onLogOut = () => {
+        logout();
+    }
+
     React.useEffect(() => {
+        console.log("--> --> ", user)
         loadUser();
     }, [])
 
@@ -50,7 +57,7 @@ const Nav: FunctionComponent<RouteComponentProps> = ({ location: { pathname } })
                     <Link to={"/todo"}><MenuItem onClick={handleClose}>Todo</MenuItem></Link>
                     {(user as User).id ? (
                         <div>
-                            <MenuItem onClick={handleClose}>Logout</MenuItem>
+                            <MenuItem onClick={handleClose} >Logout</MenuItem>
                         </div>
                     ) : (
                             <div>
@@ -84,8 +91,8 @@ const Nav: FunctionComponent<RouteComponentProps> = ({ location: { pathname } })
                 <Styles.List>
                     {(user as User).id ? (
                         <>
-                            <Styles.ListItem current={pathname === "/signup"}>
-                                <Styles.ListLink to={"/login"}>Logout</Styles.ListLink>
+                            <Styles.ListItem current={pathname === "/logout"}>
+                                <Styles.ListLink to={"/"} onClick={onLogOut}>Logout</Styles.ListLink>
                             </Styles.ListItem>
                         </>
                     ) : (
