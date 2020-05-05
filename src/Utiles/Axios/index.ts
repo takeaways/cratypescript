@@ -48,7 +48,7 @@ export const Http = axios.create({
 	baseURL:
 		process.env.NODE_ENV === 'development'
 			? 'http://localhost:8000'
-			: 'ts-api.geoniljang.com',
+			: 'https://ts-api.geoniljang.com',
 });
 
 Http.interceptors.request.use(
