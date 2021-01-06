@@ -16,7 +16,7 @@
     "@types/react-router-dom": "^5.1.4",
     "@types/redux": "^3.6.0",
     "@types/styled-components": "^5.1.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "local-web-server": "^4.0.0",
     "react": "^16.13.1",
     "react-cookie": "^4.0.3",
